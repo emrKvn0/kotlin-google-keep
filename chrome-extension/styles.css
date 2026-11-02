@@ -1,0 +1,57 @@
+.keep-date-fab-container {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+}
+
+.keep-date-fab {
+  background: #fbbc04;
+  color: #202124;
+  border: none;
+  border-radius: 28px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.keep-date-fab:hover {
+  background: #fdd663;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.keep-date-fab:active {
+  transform: translateY(0);
+}
+
+.keep-date-toast {
+  position: fixed;
+  bottom: 85px;
+  right: 28px;
+  background: #323232;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  z-index: 100000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.keep-date-toast.show {
+  opacity: 1;
+}

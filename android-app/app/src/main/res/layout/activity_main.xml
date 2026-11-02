@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📅 Keep Tarih Damgası"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tv_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Önizleme: 03.11.2026 00:45"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="#33FBBC04"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tarih/Saat Formatı (dd.MM.yyyy HH:mm):"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dd.MM.yyyy HH:mm"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btn_save_format"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Formatı Kaydet"
+            android:layout_marginBottom="20dp" />
+
+        <Button
+            android:id="@+id/btn_copy_now"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="📋 Tarihi Şimdi Panoya Kopyala"
+            android:layout_marginBottom="10dp" />
+
+        <Button
+            android:id="@+id/btn_open_keep"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="📝 Google Keep'te Tarihli Yeni Not Aç"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="💡 Samsung Galaxy A54 Kullanım İpuçları:\n\n1. Metin Seçim Menüsü (En Hızlısı): Google Keep'te not yazarken bir kelimeye basılı tut -> Çıkan menüden '📅 Tarih Ekle'ye bas, anında metne eklenir.\n\n2. Üst Bildirim Çubuğu: Ekranı üstten iki kez çek -> Kalem (Düzenle) ikonuna bas -> 'Tarih Kopyala' butonunu hızlı ayarlarına sürükle.\n\n3. Ana Ekran Widget'ı: Ana ekrana basılı tut -> Widget'lar -> 'Keep Tarih Widget' ekle."
+            android:textSize="14sp"
+            android:lineSpacingExtra="4dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Keep Tarih Damgası</string>
+    <string name="process_text_label">📅 Tarih Ekle</string>
+    <string name="widget_name">Keep Tarih Widget</string>
+    <string name="tile_label">Tarih Kopyala</string>
+</resources>

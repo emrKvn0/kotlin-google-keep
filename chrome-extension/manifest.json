@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Google Keep Hızlı Tarih Ekle",
+  "version": "1.0.0",
+  "description": "Google Keep notlarına tek tıkla veya Alt+D kısayoluyla otomatik tarih/saat ekler.",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://keep.google.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

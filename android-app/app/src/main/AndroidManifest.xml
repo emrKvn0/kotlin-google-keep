@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <queries>
+        <package android:name="com.google.android.keep" />
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+
+        <!-- 1. Ana Ayar ve Test Ekranı -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 2. Metin Seçim Menüsü (Keep içinde kelimeye basılı tutunca çıkan "📅 Tarih Ekle" butonu) -->
+        <activity
+            android:name=".ProcessTextActivity"
+            android:exported="true"
+            android:label="@string/process_text_label"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <!-- 3. Ana Ekran Widget'ı (Tek tıkla Tarihli Keep Notu açar veya Panoya Kopyalar) -->
+        <receiver
+            android:name=".KeepDateWidget"
+            android:exported="true"
+            android:label="@string/widget_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.keepstamp.app.ACTION_COPY_DATE" />
+                <action android:name="com.keepstamp.app.ACTION_NEW_KEEP_NOTE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/keep_date_widget_info" />
+        </receiver>
+
+        <!-- 4. Üst Bildirim Çubuğu Hızlı Ayarlar (Quick Settings Tile) Butonu -->
+        <service
+            android:name=".DateTileService"
+            android:exported="true"
+            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:label="@string/tile_label"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>
