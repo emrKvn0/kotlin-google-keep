@@ -3,4 +3,5 @@
     <string name="process_text_label">📅 Tarih Ekle</string>
     <string name="widget_name">Keep Tarih Widget</string>
     <string name="tile_label">Tarih Kopyala</string>
+    <string name="accessibility_service_description">Google Keep açıldığında ekranda yüzen bir 📅+ tarih butonu gösterir ve tek dokunuşla aktif nota tarih/saat ekler.</string>
 </resources>

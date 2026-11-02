@@ -17,6 +17,16 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
+        <Button
+            android:id="@+id/btn_enable_floating"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:backgroundTint="#FBBC04"
+            android:textColor="#202124"
+            android:textStyle="bold"
+            android:text="🚀 Keep İçi Yüzen Butonu (📅+) Aktif Et"
+            android:layout_marginBottom="16dp" />
+
         <TextView
             android:id="@+id/tv_preview"
             android:layout_width="match_parent"
@@ -65,7 +75,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="💡 Samsung Galaxy A54 Kullanım İpuçları:\n\n1. Metin Seçim Menüsü (En Hızlısı): Google Keep'te not yazarken bir kelimeye basılı tut -> Çıkan menüden '📅 Tarih Ekle'ye bas, anında metne eklenir.\n\n2. Üst Bildirim Çubuğu: Ekranı üstten iki kez çek -> Kalem (Düzenle) ikonuna bas -> 'Tarih Kopyala' butonunu hızlı ayarlarına sürükle.\n\n3. Ana Ekran Widget'ı: Ana ekrana basılı tut -> Widget'lar -> 'Keep Tarih Widget' ekle."
+            android:text="💡 Yüzen Buton Nasıl Açılır?\n1. Yukarıdaki sarı 'Keep İçi Yüzen Butonu Aktif Et' butonuna bas.\n2. Açılan ekranda 'Yüklü Uygulamalar' -> 'Keep Tarih Damgası'nı Açık yap.\n(Eğer Samsung izin sönük derse: Ayarlar > Uygulamalar > Keep Tarih Damgası > Sağ üst 3 nokta > Kısıtlanan ayarlara izin ver de).\n\nArtık Google Keep'e girdiğin an sağda yüzen 📅+ butonu çıkacak, dokunduğun an notuna tarihi yazıp alt satıra geçecek!"
             android:textSize="14sp"
             android:lineSpacingExtra="4dp" />
 
