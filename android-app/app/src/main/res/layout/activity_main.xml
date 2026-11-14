@@ -31,8 +31,9 @@
             android:id="@+id/tv_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Önizleme: 03.11.2026 00:45"
-            android:textSize="16sp"
+            android:text="Önizleme:\n━━━━━━━━━━━━━━━━━━\n📅 15 Kasım Pazar • 01:55"
+            android:textSize="15sp"
+            android:lineSpacingExtra="3dp"
             android:padding="12dp"
             android:background="#33FBBC04"
             android:layout_marginBottom="16dp" />
@@ -40,15 +41,89 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tarih/Saat Formatı (dd.MM.yyyy HH:mm):"
+            android:text="Hızlı Şablonlar:"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
+
+            <Button
+                android:id="@+id/btn_preset_option_a"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="━━ Çizgili Başlık"
+                android:textSize="12sp"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_preset_option_b"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="━━ Tek Satır ━━"
+                android:textSize="12sp"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/btn_preset_classic"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:text="Günlü Klasik"
+                android:textSize="12sp"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_preset_short"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="Kısa (dd.MM.yyyy)"
+                android:textSize="12sp"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tarih/Saat Formatı (Alt satır için \\n, sabit metin için '...'):"
             android:textSize="14sp" />
 
         <EditText
             android:id="@+id/et_format"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="dd.MM.yyyy HH:mm"
+            android:hint="'━━━━━━━━━━━━━━━━━━'\\n'📅 'd MMMM EEEE' • 'HH:mm"
             android:inputType="text"
+            android:layout_marginBottom="6dp" />
+
+        <CheckBox
+            android:id="@+id/cb_smart_spacing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Üstüne boş satır bırak (alt alta notlar için)"
+            android:checked="true"
             android:layout_marginBottom="8dp" />
 
         <Button

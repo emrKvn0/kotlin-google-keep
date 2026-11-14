@@ -131,20 +131,32 @@ class KeepFloatingService : AccessibilityService() {
         val targetNode = findFocusedOrEditableNode(root) ?: lastFocusedEditNode
 
         if (targetNode != null && targetNode.isEditable) {
+            targetNode.refresh()
+            val currentText = targetNode.text?.toString() ?: ""
+            // Hint (yer tutucu) metinle karışmaması için kontrol
+            val hintText = targetNode.hintText?.toString() ?: ""
+            val actualText = if (targetNode.isShowingHintText || currentText == hintText) "" else currentText
+
+            val selStart = targetNode.textSelectionStart
+            val textBeforeCursor = if (selStart in 0..actualText.length) {
+                actualText.substring(0, selStart)
+            } else {
+                actualText
+            }
+            val smartSpacing = DateHelper.isSmartSpacingEnabled(this)
+            val prefix = DateHelper.getInsertionPrefix(textBeforeCursor, smartSpacing)
+            val textToInsert = "$prefix$stamp"
+
             // Önce panoya kopyala ve ACTION_PASTE dene (imlecin tam olduğu yere ekler ve geçmişi bozmaz)
-            DateHelper.copyToClipboard(this, showToast = false)
+            DateHelper.copyToClipboard(this, showToast = false, customText = textToInsert)
             val pasted = targetNode.performAction(AccessibilityNodeInfo.ACTION_PASTE)
 
             if (!pasted) {
-                val currentText = targetNode.text?.toString() ?: ""
-                // Hint (yer tutucu) metinle karışmaması için kontrol
-                val hintText = targetNode.hintText?.toString() ?: ""
-                val actualText = if (currentText == hintText) "" else currentText
-
+                val fallbackPrefix = DateHelper.getInsertionPrefix(actualText, smartSpacing)
                 val newText = if (actualText.isEmpty()) {
                     stamp
                 } else {
-                    "$actualText\n$stamp"
+                    "$actualText$fallbackPrefix$stamp"
                 }
 
                 val args = Bundle().apply {
@@ -155,7 +167,11 @@ class KeepFloatingService : AccessibilityService() {
                 }
                 targetNode.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, args)
             }
-            Toast.makeText(this, "Tarih eklendi: ${stamp.trim()}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Tarih eklendi: ${DateHelper.getToastLabel(stamp)}",
+                Toast.LENGTH_SHORT
+            ).show()
         } else {
             DateHelper.copyToClipboard(this, showToast = false)
             Toast.makeText(

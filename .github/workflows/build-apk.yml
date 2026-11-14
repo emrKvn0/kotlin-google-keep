@@ -42,7 +42,7 @@ jobs:
       - name: Publish APK to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.1.0
-          name: "Keep Tarih Damgası APK (v1.1.0 - Keep İçi Yüzen Buton)"
+          tag_name: v1.2.0
+          name: "Keep Tarih Damgası APK (v1.2.0 - Çizgili Başlık & Hızlı Şablonlar)"
           files: KeepTarihDamgasi.apk
           overwrite: true

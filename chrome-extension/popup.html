@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tarih Formatı Ayarları</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <span class="logo-icon">📅</span>
+      <h2>Tarih Formatı</h2>
+    </div>
+
+    <div class="form-group">
+      <label for="formatInput">Format Şablonu (Alt satır için <code>\n</code>):</label>
+      <input type="text" id="formatInput" placeholder="Örn: [━━━━━━━━━━━━━━━━━━]\n[📅 ]D MMMM dddd [•] HH:mm" />
+    </div>
+
+    <div class="preview-box">
+      <div class="preview-label">Canlı Önizleme:</div>
+      <div id="previewText" class="preview-value">...</div>
+    </div>
+
+    <div class="presets-section">
+      <span class="sub-label">Hızlı Şablonlar:</span>
+      <div class="preset-buttons">
+        <button type="button" class="preset-btn" data-preset="[━━━━━━━━━━━━━━━━━━]\n[📅 ]D MMMM dddd [•] HH:mm">━━ Çizgili Başlık (Önerilen)</button>
+        <button type="button" class="preset-btn" data-preset="[━━ ]D MMMM dddd [•] HH:mm[ ━━]">━━ Tek Satır Çizgili ━━</button>
+        <button type="button" class="preset-btn" data-preset="DD.MM.YYYY dddd HH:mm">04.11.2026 Çarşamba 18:30</button>
+        <button type="button" class="preset-btn" data-preset="D MMMM YYYY dddd, HH:mm">4 Kasım 2026 Çarşamba, 18:30</button>
+        <button type="button" class="preset-btn" data-preset="DD.MM.YYYY HH:mm">04.11.2026 18:30</button>
+      </div>
+    </div>
+
+    <div class="options-section">
+      <label class="checkbox-label">
+        <input type="checkbox" id="smartSpacingCheckbox" />
+        <span>Üstüne boş satır bırak (alt alta notlar için)</span>
+      </label>
+
+      <label class="checkbox-label">
+        <input type="checkbox" id="newlineCheckbox" />
+        <span>Ekledikten sonra alt satıra geç</span>
+      </label>
+
+      <div class="locale-row">
+        <label for="localeSelect">Dil (Gün/Ay Adı):</label>
+        <select id="localeSelect">
+          <option value="tr-TR">Türkçe (Perşembe, Kasım)</option>
+          <option value="en-US">English (Thursday, November)</option>
+          <option value="de-DE">Deutsch (Donnerstag, November)</option>
+        </select>
+      </div>
+    </div>
+
+    <details class="cheatsheet">
+      <summary>Desteklenen Format Kodları</summary>
+      <ul>
+        <li><code>dddd</code> : Tam gün adı (Çarşamba)</li>
+        <li><code>ddd</code> : Kısa gün adı (Çar)</li>
+        <li><code>DD</code> : İki haneli gün (04)</li>
+        <li><code>D</code> : Tek haneli gün (4)</li>
+        <li><code>MMMM</code> : Tam ay adı (Kasım)</li>
+        <li><code>MMM</code> : Kısa ay adı (Kas)</li>
+        <li><code>MM</code> : İki haneli ay (11)</li>
+        <li><code>M</code> : Tek haneli ay (11)</li>
+        <li><code>YYYY</code> : Dört haneli yıl (2026)</li>
+        <li><code>YY</code> : İki haneli yıl (26)</li>
+        <li><code>HH</code> : 24 saat (00-23)</li>
+        <li><code>hh</code> : 12 saat (01-12)</li>
+        <li><code>mm</code> : Dakika (00-59)</li>
+        <li><code>ss</code> : Saniye (00-59)</li>
+        <li><code>A / a</code> : ÖÖ/ÖS veya AM/PM</li>
+        <li><code>\n</code> : Alt satıra geç</li>
+        <li><code>[Metin]</code> : Değiştirilmeden kalan sabit metin</li>
+      </ul>
+    </details>
+
+    <div class="actions">
+      <button id="saveBtn" class="primary-btn">Kaydet</button>
+      <span id="statusMsg" class="status-msg"></span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

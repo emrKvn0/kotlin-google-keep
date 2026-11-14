@@ -12,7 +12,12 @@ import java.util.Locale
 object DateHelper {
     private const val PREFS_NAME = "keep_stamp_prefs"
     private const val KEY_FORMAT = "date_format"
-    const val DEFAULT_FORMAT = "dd.MM.yyyy HH:mm"
+    private const val KEY_SMART_SPACING = "smart_spacing"
+
+    const val DEFAULT_FORMAT = "'━━━━━━━━━━━━━━━━━━'\\n'📅 'd MMMM EEEE' • 'HH:mm"
+    const val OPTION_B_FORMAT = "'━━ 'd MMMM EEEE' • 'HH:mm' ━━'"
+    const val CLASSIC_FORMAT = "dd.MM.yyyy EEEE HH:mm"
+    const val SHORT_FORMAT = "dd.MM.yyyy HH:mm"
 
     fun getFormat(context: Context): String {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -24,22 +29,57 @@ object DateHelper {
         prefs.edit().putString(KEY_FORMAT, format).apply()
     }
 
-    fun getCurrentStamp(context: Context): String {
-        val pattern = getFormat(context)
-        val formatted = try {
-            SimpleDateFormat(pattern, Locale("tr", "TR")).format(Date())
+    fun isSmartSpacingEnabled(context: Context): Boolean {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return prefs.getBoolean(KEY_SMART_SPACING, true)
+    }
+
+    fun setSmartSpacingEnabled(context: Context, enabled: Boolean) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putBoolean(KEY_SMART_SPACING, enabled).apply()
+    }
+
+    fun formatStamp(pattern: String): String {
+        val locale = Locale("tr", "TR")
+        val normalized = pattern.ifBlank { DEFAULT_FORMAT }.replace("\\n", "\n")
+        return try {
+            SimpleDateFormat(normalized, locale).format(Date())
         } catch (e: Exception) {
-            SimpleDateFormat(DEFAULT_FORMAT, Locale("tr", "TR")).format(Date())
+            SimpleDateFormat(DEFAULT_FORMAT.replace("\\n", "\n"), locale).format(Date())
         }
+    }
+
+    fun getCurrentStamp(context: Context): String {
+        val formatted = formatStamp(getFormat(context))
         return "$formatted\n"
     }
 
-    fun copyToClipboard(context: Context, showToast: Boolean = true): String {
-        val stamp = getCurrentStamp(context)
+    fun getInsertionPrefix(existingTextBeforeCursor: String, smartSpacing: Boolean): String {
+        if (existingTextBeforeCursor.isBlank()) return ""
+        if (!smartSpacing) {
+            return if (existingTextBeforeCursor.endsWith("\n")) "" else "\n"
+        }
+        return when {
+            existingTextBeforeCursor.endsWith("\n\n") -> ""
+            existingTextBeforeCursor.endsWith("\n") -> "\n"
+            else -> "\n\n"
+        }
+    }
+
+    fun getToastLabel(stamp: String): String {
+        return stamp.trim().lines().lastOrNull { it.isNotBlank() }?.trim() ?: stamp.trim()
+    }
+
+    fun copyToClipboard(
+        context: Context,
+        showToast: Boolean = true,
+        customText: String? = null
+    ): String {
+        val stamp = customText ?: getCurrentStamp(context)
         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboard.setPrimaryClip(ClipData.newPlainText("Tarih", stamp))
         if (showToast) {
-            Toast.makeText(context, "Kopyalandı: ${stamp.trim()}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Kopyalandı: ${getToastLabel(stamp)}", Toast.LENGTH_SHORT).show()
         }
         return stamp
     }

@@ -4,8 +4,7 @@
   right: 28px;
   z-index: 99999;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 8px;
   font-family: 'Google Sans', Roboto, Arial, sans-serif;
 }
@@ -36,6 +35,27 @@
   transform: translateY(0);
 }
 
+.keep-date-fab-settings {
+  background: #ffffff;
+  color: #3c4043;
+  border: 1px solid #dadce0;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.keep-date-fab-settings:hover {
+  background: #f1f3f4;
+  transform: rotate(30deg);
+}
+
 .keep-date-toast {
   position: fixed;
   bottom: 85px;
@@ -54,4 +74,159 @@
 
 .keep-date-toast.show {
   opacity: 1;
+}
+
+/* Modal Stilleri */
+.keep-date-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.keep-date-modal-card {
+  background: #fff;
+  color: #202124;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.keep-date-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.keep-date-modal-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.keep-date-modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #5f6368;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.keep-date-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.keep-date-label, .keep-date-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: #5f6368;
+}
+
+.keep-date-modal-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: monospace;
+  background: #ffffff;
+  color: #202124;
+  box-sizing: border-box;
+}
+
+.keep-date-preview-wrapper {
+  background: #f8f9fa;
+  border: 1px dashed #dadce0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.keep-date-preview-label {
+  color: #5f6368;
+  font-size: 11px;
+}
+
+.keep-date-preview-val {
+  font-weight: 600;
+  color: #1a73e8;
+  font-family: monospace;
+  white-space: pre-line;
+  line-height: 1.45;
+}
+
+.keep-date-presets {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.keep-date-preset-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.keep-date-preset-chips button {
+  background: #f1f3f4;
+  color: #3c4043;
+  border: 1px solid #dadce0;
+  border-radius: 12px;
+  padding: 4px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.keep-date-preset-chips button:hover {
+  background: #e8eaed;
+}
+
+.keep-date-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #3c4043;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.keep-date-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.keep-date-btn-save {
+  background: #fbbc04;
+  color: #202124;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.keep-date-btn-save:hover {
+  background: #fdd663;
 }
