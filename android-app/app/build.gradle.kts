@@ -15,6 +15,18 @@ android {
         versionName = "1.2.0"
     }
 
+    signingConfigs {
+        val fixedKeystorePath = System.getenv("FIXED_KEYSTORE_PATH")
+        if (!fixedKeystorePath.isNullOrBlank() && file(fixedKeystorePath).exists()) {
+            getByName("debug") {
+                storeFile = file(fixedKeystorePath)
+                storePassword = System.getenv("FIXED_KEYSTORE_PASS") ?: "android"
+                keyAlias = System.getenv("FIXED_KEY_ALIAS") ?: "androiddebugkey"
+                keyPassword = System.getenv("FIXED_KEY_PASS") ?: "android"
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

@@ -26,6 +26,18 @@ jobs:
         with:
           gradle-version: '8.5'
 
+      - name: Restore Fixed Debug Keystore
+        env:
+          DEBUG_KEYSTORE_BASE64: ${{ secrets.DEBUG_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$DEBUG_KEYSTORE_BASE64" ]; then
+            echo "$DEBUG_KEYSTORE_BASE64" | tr -d '\r\n ' | base64 -d > "${{ runner.temp }}/fixed-debug.keystore"
+            echo "FIXED_KEYSTORE_PATH=${{ runner.temp }}/fixed-debug.keystore" >> "$GITHUB_ENV"
+            echo "Fixed debug keystore restored."
+          else
+            echo "DEBUG_KEYSTORE_BASE64 secret not found; falling back to ephemeral debug keystore."
+          fi
+
       - name: Build Debug APK
         working-directory: ./android-app
         run: gradle assembleDebug
